@@ -1,0 +1,117 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background-color: var(--color-darker);
+  border-bottom: 1px solid var(--overlay-white-10);
+  height: 72px;
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  height: 100%;
+}
+
+.logo {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-white);
+  letter-spacing: var(--letter-spacing-tight);
+  flex-shrink: 0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-6);
+  margin-left: var(--spacing-4);
+}
+
+.navLink {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-lavender);
+  transition: var(--transition-fast);
+}
+
+.navLink:hover {
+  color: var(--color-white);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  margin-left: auto;
+}
+
+.loginBtn {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-lavender);
+  padding: var(--spacing-2) var(--spacing-4);
+  transition: var(--transition-fast);
+}
+
+.loginBtn:hover {
+  color: var(--color-white);
+}
+
+.ctaBtn {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white);
+  background-color: var(--color-primary);
+  padding: var(--spacing-2) var(--spacing-5);
+  border-radius: var(--radius-pill);
+  transition: var(--transition-default);
+}
+
+.ctaBtn:hover {
+  background-color: #7d4ff5;
+  transform: translateY(-1px);
+}
+
+.menuToggle {
+  display: none;
+  background: none;
+  color: var(--color-white);
+  padding: var(--spacing-2);
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    display: none;
+    position: fixed;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background-color: var(--color-darker);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--spacing-6) var(--spacing-6) var(--spacing-8);
+    border-bottom: 1px solid var(--overlay-white-10);
+    gap: var(--spacing-5);
+  }
+
+  .navOpen {
+    display: flex;
+  }
+
+  .navLink {
+    font-size: var(--font-size-base);
+  }
+
+  .actions {
+    display: none;
+  }
+
+  .menuToggle {
+    display: flex;
+  }
+}

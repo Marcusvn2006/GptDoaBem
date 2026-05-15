@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(extract-text \"C:\\\\Users\\\\suporte\\\\Downloads\\\\COPY - ACELERADORA GPTDOABEM.docx\")",
+      "Bash(ls \"C:\\\\Users\\\\suporte\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\c4c246ae-fbbc-436c-b3d5-0c9151051b93\\\\3cbcbdb5-22b0-4578-a669-3258237a1172\\\\skills\\\\docx\\\\scripts\" 2>&1 | head -20)",
+      "Bash(python \"C:\\\\Users\\\\suporte\\\\AppData\\\\Roaming\\\\Claude\\\\local-agent-mode-sessions\\\\skills-plugin\\\\c4c246ae-fbbc-436c-b3d5-0c9151051b93\\\\3cbcbdb5-22b0-4578-a669-3258237a1172\\\\skills\\\\docx\\\\scripts\\\\office\\\\unpack.py\" \"C:\\\\Users\\\\suporte\\\\Downloads\\\\COPY - ACELERADORA GPTDOABEM.docx\" \"C:\\\\Temp-code\\\\GptDoaBem\\\\source_unpacked\")",
+      "Bash(py --version)",
+      "PowerShell($src = \"C:\\\\Users\\\\suporte\\\\Downloads\\\\COPY - ACELERADORA GPTDOABEM.docx\"; $dst = \"C:\\\\Temp-code\\\\GptDoaBem\\\\source_unpacked\"; if \\(Test-Path $dst\\) { Remove-Item $dst -Recurse -Force }; New-Item -ItemType Directory -Path $dst | Out-Null; Add-Type -AssemblyName System.IO.Compression.FileSystem; [System.IO.Compression.ZipFile]::ExtractToDirectory\\($src, $dst\\); dir $dst)",
+      "Bash(node -e \"console.log\\(require\\('docx'\\).Document ? 'docx OK' : 'no docx'\\)\")",
+      "Bash(npm install *)",
+      "Bash(node build_doc.js)",
+      "PowerShell($f = Get-Item \"C:\\\\Users\\\\suporte\\\\Downloads\\\\GPTDOABEM-PORTAL.docx\"; \"Tamanho: $\\([math]::Round\\($f.Length / 1KB, 1\\)\\) KB\"; \"Caminho: $\\($f.FullName\\)\")"
+    ]
+  }
+}
