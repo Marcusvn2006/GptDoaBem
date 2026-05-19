@@ -4,8 +4,8 @@
   left: 0;
   right: 0;
   z-index: 100;
-  background-color: var(--color-darker);
-  border-bottom: 1px solid var(--overlay-white-10);
+  background-color: var(--bg-page);
+  border-bottom: 1px solid var(--border-default);
   height: 72px;
 }
 
@@ -19,7 +19,7 @@
 .logo {
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
-  color: var(--color-white);
+  color: var(--color-primary);
   letter-spacing: var(--letter-spacing-tight);
   flex-shrink: 0;
 }
@@ -34,12 +34,12 @@
 .navLink {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-medium);
-  color: var(--color-lavender);
+  color: var(--text-muted);
   transition: var(--transition-fast);
 }
 
 .navLink:hover {
-  color: var(--color-white);
+  color: var(--color-primary);
 }
 
 .actions {
@@ -49,37 +49,45 @@
   margin-left: auto;
 }
 
-.loginBtn {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-lavender);
-  padding: var(--spacing-2) var(--spacing-4);
-  transition: var(--transition-fast);
-}
-
-.loginBtn:hover {
-  color: var(--color-white);
-}
-
 .ctaBtn {
   font-size: var(--font-size-sm);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-white);
+  color: var(--color-white-btn);
   background-color: var(--color-primary);
-  padding: var(--spacing-2) var(--spacing-5);
+  padding: 10px var(--spacing-5);
   border-radius: var(--radius-pill);
   transition: var(--transition-default);
+  white-space: nowrap;
 }
 
 .ctaBtn:hover {
-  background-color: #7d4ff5;
+  background-color: var(--color-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ctaSecondary {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  background-color: transparent;
+  border: 1px solid var(--border-default);
+  padding: 10px var(--spacing-5);
+  border-radius: var(--radius-pill);
+  transition: var(--transition-default);
+  white-space: nowrap;
+}
+
+.ctaSecondary:hover {
+  background-color: var(--overlay-purple-sm);
+  border-color: var(--border-strong);
   transform: translateY(-1px);
 }
 
 .menuToggle {
   display: none;
   background: none;
-  color: var(--color-white);
+  color: var(--text-primary);
   padding: var(--spacing-2);
   margin-left: auto;
 }
@@ -91,27 +99,19 @@
     top: 72px;
     left: 0;
     right: 0;
-    background-color: var(--color-darker);
+    background-color: var(--bg-page);
     flex-direction: column;
     align-items: flex-start;
     padding: var(--spacing-6) var(--spacing-6) var(--spacing-8);
-    border-bottom: 1px solid var(--overlay-white-10);
+    border-bottom: 1px solid var(--border-default);
     gap: var(--spacing-5);
   }
 
-  .navOpen {
-    display: flex;
-  }
+  .navOpen { display: flex; }
 
-  .navLink {
-    font-size: var(--font-size-base);
-  }
+  .navLink { font-size: var(--font-size-base); }
 
-  .actions {
-    display: none;
-  }
+  .actions { display: none; }
 
-  .menuToggle {
-    display: flex;
-  }
+  .menuToggle { display: flex; }
 }

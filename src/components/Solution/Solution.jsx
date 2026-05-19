@@ -1,4 +1,5 @@
 import { IoSchoolOutline, IoBarChartOutline, IoPeopleOutline } from 'react-icons/io5'
+import { useInView } from '../../hooks/useInView'
 import styles from './Solution.module.css'
 
 const cards = [
@@ -20,11 +21,16 @@ const cards = [
   },
 ]
 
+const delays = ['delay-1', 'delay-2', 'delay-3']
+
 export default function Solution() {
+  const [headerRef, headerInView] = useInView()
+  const [gridRef, gridInView] = useInView()
+
   return (
     <section className={styles.section} id="solucao">
       <div className="container">
-        <div className={styles.header}>
+        <div ref={headerRef} className={`${styles.header} anim-fade-up ${headerInView ? 'in-view' : ''}`}>
           <h2 className={styles.title}>A Solução: Estrutura Profissional</h2>
           <p className={styles.subtitle}>
             Não oferecemos apenas doações. Oferecemos um ecossistema completo de
@@ -32,9 +38,12 @@ export default function Solution() {
           </p>
         </div>
 
-        <div className={styles.grid}>
-          {cards.map(({ icon: Icon, title, description, featured }) => (
-            <article key={title} className={`${styles.card} ${featured ? styles.cardFeatured : ''}`}>
+        <div ref={gridRef} className={styles.grid}>
+          {cards.map(({ icon: Icon, title, description, featured }, i) => (
+            <article
+              key={title}
+              className={`${styles.card} ${featured ? styles.cardFeatured : ''} anim-scale ${delays[i]} ${gridInView ? 'in-view' : ''}`}
+            >
               <div className={styles.iconWrap}>
                 <Icon size={22} />
               </div>
@@ -42,6 +51,10 @@ export default function Solution() {
               <p className={styles.cardDesc}>{description}</p>
             </article>
           ))}
+        </div>
+
+        <div className={`${styles.cta} anim-fade-up delay-4 ${gridInView ? 'in-view' : ''}`}>
+          <a href="#jornada" className={styles.ctaBtn}>Conheça a Jornada de Formação</a>
         </div>
       </div>
     </section>

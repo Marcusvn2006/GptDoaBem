@@ -1,3 +1,4 @@
+import { useInView } from '../../hooks/useInView'
 import styles from './Journey.module.css'
 
 const phases = [
@@ -33,25 +34,37 @@ const phases = [
   },
 ]
 
+const delays = ['delay-1', 'delay-2', 'delay-3', 'delay-4', 'delay-5', 'delay-6']
+
 export default function Journey() {
+  const [headerRef, headerInView] = useInView()
+  const [gridRef, gridInView] = useInView()
+
   return (
     <section className={styles.section} id="jornada">
       <div className="container">
-        <div className={styles.header}>
+        <div ref={headerRef} className={`${styles.header} anim-fade-up ${headerInView ? 'in-view' : ''}`}>
           <h2 className={styles.title}>Jornada de Formação.</h2>
           <p className={styles.subtitle}>
             Transformamos voluntários em especialistas em impacto digital em 6 fases intensivas.
           </p>
         </div>
 
-        <div className={styles.grid}>
-          {phases.map(({ number, title, description }) => (
-            <article key={number} className={styles.card}>
-              <span className={styles.badge}>{number}</span>
+        <div ref={gridRef} className={styles.grid}>
+          {phases.map(({ number, title, description }, i) => (
+            <article
+              key={number}
+              className={`${styles.card} anim-fade-up ${delays[i]} ${gridInView ? 'in-view' : ''}`}
+            >
+              <span className={`${styles.badge} ${gridInView ? styles.badgeAnimate : ''}`}>{number}</span>
               <h3 className={styles.cardTitle}>{title}</h3>
               <p className={styles.cardDesc}>{description}</p>
             </article>
           ))}
+        </div>
+
+        <div className={`${styles.cta} anim-fade-up delay-6 ${gridInView ? 'in-view' : ''}`}>
+          <a href="#cadastro" className={styles.ctaBtn}>Quero ser Voluntário</a>
         </div>
       </div>
     </section>

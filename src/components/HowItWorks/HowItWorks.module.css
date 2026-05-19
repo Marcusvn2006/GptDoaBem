@@ -1,5 +1,5 @@
 .section {
-  background-color: var(--color-darker);
+  background-color: var(--bg-alt);
   padding: var(--section-padding-y) 0;
 }
 
@@ -12,14 +12,14 @@
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-bold);
   letter-spacing: var(--letter-spacing-tight);
-  color: var(--color-white);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-2);
   line-height: var(--line-height-snug);
 }
 
 .subtitle {
   font-size: var(--font-size-lg);
-  color: var(--color-lavender);
+  color: var(--text-muted);
 }
 
 .grid {
@@ -30,8 +30,8 @@
 }
 
 .step {
-  background-color: var(--overlay-white-3);
-  border: 1px solid var(--overlay-white-10);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   padding: var(--spacing-8);
   display: flex;
@@ -39,18 +39,21 @@
   gap: var(--spacing-4);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-card);
   transition: var(--transition-default);
 }
 
 .step:hover {
-  border-color: rgba(109, 61, 245, 0.3);
+  border-color: var(--border-strong);
   transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
 }
 
 .stepNum {
   font-size: var(--font-size-4xl);
   font-weight: var(--font-weight-extrabold);
-  color: rgba(109, 61, 245, 0.2);
+  color: var(--overlay-purple-md);
+  color: rgba(109, 61, 245, 0.12);
   line-height: 1;
   letter-spacing: var(--letter-spacing-tight);
   position: absolute;
@@ -61,27 +64,24 @@
 .stepTitle {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-white);
+  color: var(--text-primary);
   line-height: var(--line-height-snug);
 }
 
 .stepDesc {
   font-size: var(--font-size-sm);
-  color: var(--color-lavender);
+  color: var(--text-muted);
   line-height: var(--line-height-normal);
 }
 
-.cta {
-  display: flex;
-  justify-content: center;
-}
+.cta { display: flex; justify-content: center; }
 
 .ctaBtn {
   display: inline-flex;
   align-items: center;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-semibold);
-  color: var(--color-white);
+  color: var(--color-white-btn);
   background-color: var(--color-primary);
   padding: 16px var(--spacing-8);
   border-radius: var(--radius-pill);
@@ -89,26 +89,17 @@
 }
 
 .ctaBtn:hover {
-  background-color: #7d4ff5;
+  background-color: var(--color-primary-hover);
   transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
 }
 
 @media (max-width: 900px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .title {
-    font-size: var(--font-size-3xl);
-  }
+  .grid { grid-template-columns: repeat(2, 1fr); }
+  .title { font-size: var(--font-size-3xl); }
 }
 
 @media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .title {
-    font-size: var(--font-size-2xl);
-  }
+  .grid { grid-template-columns: 1fr; }
+  .title { font-size: var(--font-size-2xl); }
 }

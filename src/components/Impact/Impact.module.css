@@ -1,5 +1,5 @@
 .section {
-  background-color: var(--color-darker);
+  background-color: var(--bg-alt);
   padding: var(--section-padding-y) 0;
 }
 
@@ -14,13 +14,13 @@
   font-weight: var(--font-weight-extrabold);
   letter-spacing: var(--letter-spacing-tight);
   line-height: var(--line-height-tight);
-  color: var(--color-white);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-4);
 }
 
 .subtitle {
   font-size: var(--font-size-base);
-  color: var(--color-lavender);
+  color: var(--text-muted);
   line-height: var(--line-height-normal);
 }
 
@@ -32,13 +32,20 @@
 }
 
 .statCard {
-  background-color: var(--color-dark);
-  border: 1px solid var(--overlay-white-10);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   padding: var(--spacing-8);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-3);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition-default);
+}
+
+.statCard:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
 }
 
 .statValue {
@@ -48,41 +55,31 @@
   letter-spacing: var(--letter-spacing-tight);
 }
 
-.statValue--primary {
-  color: var(--color-lilac-medium);
-}
-
-.statValue--lavender {
-  color: var(--color-lilac-alt);
-}
-
-.statValue--green {
-  color: #4ade80;
-}
-
-.statValue--white {
-  color: var(--color-gray-light);
-}
+.statValue--primary  { color: var(--color-primary); }
+.statValue--lavender { color: #7B6EA0; }
+.statValue--green    { color: #16a34a; }
+.statValue--white    { color: var(--text-secondary); }
 
 .statLabel {
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
-  color: var(--color-lavender);
+  color: var(--text-muted);
   letter-spacing: var(--letter-spacing-wide);
   text-transform: uppercase;
 }
 
 .esgBlock {
-  background-color: var(--overlay-white-3);
-  border: 1px solid var(--overlay-white-10);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-lg);
   padding: var(--spacing-10);
+  box-shadow: var(--shadow-card);
 }
 
 .esgTitle {
   font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  color: var(--color-white);
+  color: var(--text-primary);
   margin-bottom: var(--spacing-6);
 }
 
@@ -109,30 +106,61 @@
 
 .esgText {
   font-size: var(--font-size-sm);
-  color: var(--color-lavender);
+  color: var(--text-muted);
   line-height: var(--line-height-normal);
 }
 
+.cta {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-4);
+  margin-top: var(--spacing-10);
+  flex-wrap: wrap;
+}
+
+.ctaPrimary {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-white-btn);
+  background-color: var(--color-primary);
+  padding: 14px var(--spacing-8);
+  border-radius: var(--radius-pill);
+  transition: var(--transition-default);
+}
+
+.ctaPrimary:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+  padding: 14px var(--spacing-8);
+  border-radius: var(--radius-pill);
+  transition: var(--transition-default);
+}
+
+.ctaSecondary:hover {
+  background-color: var(--overlay-purple-sm);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
 @media (max-width: 900px) {
-  .statsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .esgGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .title {
-    font-size: var(--font-size-4xl);
-  }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); }
+  .esgGrid { grid-template-columns: 1fr; }
+  .title { font-size: var(--font-size-4xl); }
 }
 
 @media (max-width: 480px) {
-  .statValue {
-    font-size: 2.25rem;
-  }
-
-  .title {
-    font-size: var(--font-size-3xl);
-  }
+  .statValue { font-size: 2.25rem; }
+  .title { font-size: var(--font-size-3xl); }
 }

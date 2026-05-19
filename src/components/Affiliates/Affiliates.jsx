@@ -62,10 +62,13 @@ export default function Affiliates() {
 
         <h3 className={styles.subheading}>O Ciclo Virtuoso GPTDOABEM</h3>
         <div className={styles.cycle}>
-          {cycleSteps.map(({ n, text }) => (
-            <div key={n} className={styles.cycleStep}>
+          {cycleSteps.map(({ n, text }, i) => (
+            <div key={n} className={styles.cycleCard}>
               <span className={styles.cycleNum}>{n}</span>
               <p className={styles.cycleText}>{text}</p>
+              {i < cycleSteps.length - 1 && (
+                <span className={styles.cycleArrow}>↓</span>
+              )}
             </div>
           ))}
         </div>

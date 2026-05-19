@@ -1,4 +1,5 @@
 import { IoEyeOffOutline, IoTrendingDownOutline, IoWarningOutline } from 'react-icons/io5'
+import { useInView } from '../../hooks/useInView'
 import styles from './Problem.module.css'
 
 const problems = [
@@ -22,11 +23,16 @@ const problems = [
   },
 ]
 
+const delays = ['delay-1', 'delay-2', 'delay-3']
+
 export default function Problem() {
+  const [textRef, textInView] = useInView()
+  const [cardsRef, cardsInView] = useInView()
+
   return (
     <section className={styles.section} id="problema">
       <div className={`container ${styles.inner}`}>
-        <div className={styles.textBlock}>
+        <div ref={textRef} className={`${styles.textBlock} anim-fade-left ${textInView ? 'in-view' : ''}`}>
           <h2 className={styles.title}>Insônia Financeira Institucional.</h2>
           <p className={styles.desc}>
             Milhares de ONGs realizam trabalhos essenciais, mas sofrem na
@@ -35,9 +41,12 @@ export default function Problem() {
           </p>
         </div>
 
-        <div className={styles.cards}>
-          {problems.map(({ icon: Icon, title, description, variant }) => (
-            <article key={title} className={`${styles.card} ${styles[`card--${variant}`]}`}>
+        <div ref={cardsRef} className={styles.cards}>
+          {problems.map(({ icon: Icon, title, description, variant }, i) => (
+            <article
+              key={title}
+              className={`${styles.card} ${styles[`card--${variant}`]} anim-fade-right ${delays[i]} ${cardsInView ? 'in-view' : ''}`}
+            >
               <div className={`${styles.iconWrap} ${styles[`iconWrap--${variant}`]}`}>
                 <Icon size={20} />
               </div>
@@ -45,6 +54,12 @@ export default function Problem() {
               <p className={styles.cardDesc}>{description}</p>
             </article>
           ))}
+          <a
+            href="#solucao"
+            className={`${styles.ctaBtn} anim-fade-up delay-4 ${cardsInView ? 'in-view' : ''}`}
+          >
+            Ver a Solução
+          </a>
         </div>
       </div>
     </section>

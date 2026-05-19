@@ -27,8 +27,8 @@ export default function Navbar() {
         </nav>
 
         <div className={styles.actions}>
-          <a href="#contato" className={styles.loginBtn}>Login</a>
-          <a href="#cadastro" className={styles.ctaBtn}>Get Started</a>
+          <a href="#cadastro" className={styles.ctaBtn}>Quero ser Voluntário</a>
+          <a href="#parceria" className={styles.ctaSecondary}>Quero Apoiar o Projeto</a>
         </div>
 
         <button

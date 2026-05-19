@@ -1,4 +1,5 @@
 import { IoGitNetworkOutline, IoRocketOutline } from 'react-icons/io5'
+import { useInView } from '../../hooks/useInView'
 import styles from './Hub.module.css'
 
 const hubCards = [
@@ -17,10 +18,13 @@ const hubCards = [
 ]
 
 export default function Hub() {
+  const [headerRef, headerInView] = useInView()
+  const [gridRef, gridInView] = useInView()
+
   return (
     <section className={styles.section} id="hub">
       <div className="container">
-        <div className={styles.header}>
+        <div ref={headerRef} className={`${styles.header} anim-fade-up ${headerInView ? 'in-view' : ''}`}>
           <h2 className={styles.title}>Aceleradora Social e Hub Digital.</h2>
           <p className={styles.subtitle}>
             O GPTDOABEM atua como uma ponte estratégica entre talentos digitais em formação
@@ -28,9 +32,12 @@ export default function Hub() {
           </p>
         </div>
 
-        <div className={styles.grid}>
-          {hubCards.map(({ icon: Icon, title, description }) => (
-            <article key={title} className={styles.card}>
+        <div ref={gridRef} className={styles.grid}>
+          {hubCards.map(({ icon: Icon, title, description }, i) => (
+            <article
+              key={title}
+              className={`${styles.card} anim-scale ${i === 0 ? 'delay-1' : 'delay-3'} ${gridInView ? 'in-view' : ''}`}
+            >
               <div className={styles.iconWrap}>
                 <Icon size={24} />
               </div>
@@ -38,6 +45,11 @@ export default function Hub() {
               <p className={styles.cardDesc}>{description}</p>
             </article>
           ))}
+        </div>
+
+        <div className={`${styles.cta} anim-fade-up delay-4 ${gridInView ? 'in-view' : ''}`}>
+          <a href="#cadastro" className={styles.ctaPrimary}>Quero Fazer Parte</a>
+          <a href="#parceria" className={styles.ctaSecondary}>Quero Apoiar como Empresa</a>
         </div>
       </div>
     </section>
