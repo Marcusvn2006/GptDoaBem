@@ -7,6 +7,7 @@ const navLinks = [
   { label: 'Solução', href: '#solucao' },
   { label: 'Hub', href: '#hub' },
   { label: 'Aceleradora', href: '#aceleradora' },
+  { label: 'Aulas', href: '#aulas' },
   { label: 'Suporte', href: '#contato' },
 ]
 

@@ -10,6 +10,7 @@ import Affiliates from './components/Affiliates/Affiliates'
 import Impact from './components/Impact/Impact'
 import Benefits from './components/Benefits/Benefits'
 import HowItWorks from './components/HowItWorks/HowItWorks'
+import Aulas from './components/Aulas/Aulas'
 import Testimonials from './components/Testimonials/Testimonials'
 import FAQ from './components/FAQ/FAQ'
 import Contact from './components/Contact/Contact'
@@ -31,6 +32,7 @@ export default function App() {
         <Impact />
         <Benefits />
         <HowItWorks />
+        <Aulas />
         <Testimonials />
         <FAQ />
         <Contact />

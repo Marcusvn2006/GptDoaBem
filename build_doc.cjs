@@ -3,7 +3,8 @@ const {
   Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
   Header, Footer, AlignmentType, PageOrientation, LevelFormat,
   TabStopType, TabStopPosition, HeadingLevel, BorderStyle, WidthType,
-  ShadingType, VerticalAlign, PageNumber, PageBreak
+  ShadingType, VerticalAlign, PageNumber, PageBreak,
+  ImageRun, ExternalHyperlink
 } = require('docx');
 
 // ============================================================
@@ -308,6 +309,83 @@ const CTAButton = (text) => new Table({
     })],
   })],
 });
+
+// Video Card (thumbnail + título + badge + link)
+const THUMBS_DIR = 'C:\\Temp-code\\GptDoaBem\\thumbs';
+const videoCard = (file, title, isShort, url) => {
+  const thumbPath = `${THUMBS_DIR}\\${file}.jpg`;
+  const imgBuf = fs.readFileSync(thumbPath);
+  const badgeColor = isShort ? C.accentSoft : C.accent;
+  const badgeText = isShort ? '◉  SHORT' : '▶  VÍDEO';
+
+  return new Table({
+    width: { size: 9360, type: WidthType.DXA },
+    columnWidths: [9360],
+    borders: {
+      top:    { style: BorderStyle.SINGLE, size: 4, color: C.accent },
+      bottom: { style: BorderStyle.SINGLE, size: 4, color: C.accent },
+      left:   { style: BorderStyle.SINGLE, size: 4, color: C.accent },
+      right:  { style: BorderStyle.SINGLE, size: 4, color: C.accent },
+      insideHorizontal: { style: BorderStyle.NONE, size: 0, color: 'auto' },
+      insideVertical:   { style: BorderStyle.NONE, size: 0, color: 'auto' },
+    },
+    rows: [new TableRow({
+      children: [new TableCell({
+        width: { size: 9360, type: WidthType.DXA },
+        shading: { fill: C.cardDark, type: ShadingType.CLEAR, color: 'auto' },
+        margins: { top: 240, bottom: 280, left: 320, right: 320 },
+        children: [
+          // Thumbnail (centralizada, 520 x 293 px = 16:9)
+          new Paragraph({
+            alignment: AlignmentType.CENTER,
+            spacing: { before: 0, after: 200 },
+            children: [new ImageRun({
+              type: 'jpg',
+              data: imgBuf,
+              transformation: { width: 520, height: 293 },
+              altText: { title: title, description: title, name: file },
+            })],
+          }),
+          // Badge tipo
+          new Paragraph({
+            alignment: AlignmentType.LEFT,
+            spacing: { before: 0, after: 80 },
+            children: [new TextRun({
+              text: badgeText, font: FONT, color: badgeColor, bold: true, size: 18,
+              characterSpacing: 40,
+            })],
+          }),
+          // Título
+          new Paragraph({
+            alignment: AlignmentType.LEFT,
+            spacing: { before: 0, after: 140, line: 300 },
+            children: [new TextRun({
+              text: title, font: FONT, color: C.textLight, bold: true, size: 28,
+            })],
+          }),
+          // Link
+          new Paragraph({
+            alignment: AlignmentType.LEFT,
+            spacing: { before: 0, after: 0 },
+            children: [
+              new TextRun({ text: '🔗  ', font: FONT, color: C.accent, size: 20 }),
+              new ExternalHyperlink({
+                link: url,
+                children: [new TextRun({
+                  text: 'Assistir no YouTube',
+                  font: FONT, color: C.accent, bold: true, size: 20,
+                  underline: { type: 'single', color: C.accent },
+                })],
+              }),
+              new TextRun({ text: '    ·    ', font: FONT, color: C.textMuted, size: 20 }),
+              new TextRun({ text: url, font: FONT, color: C.textMuted, size: 18 }),
+            ],
+          }),
+        ],
+      })],
+    })],
+  });
+};
 
 // ============================================================
 // CONTEÚDO — 18 SEÇÕES
@@ -653,6 +731,117 @@ content.push(Card([
   Bullet('Frequência estratégica • Calendário de conteúdo'),
   Bullet('Divisão de funções • Indicadores de crescimento'),
 ]));
+
+content.push(Empty(240));
+content.push(Divider());
+
+// ============================================================
+// SEÇÃO 4B — AULAS REALIZADAS (BIBLIOTECA DE VÍDEOS)
+// ============================================================
+content.push(Eyebrow('AULAS REALIZADAS — BIBLIOTECA DE VÍDEOS'));
+content.push(new Paragraph({
+  spacing: { before: 100, after: 80 },
+  children: [
+    new TextRun({ text: '🎬  ', font: FONT, size: 36 }),
+    new TextRun({
+      text: 'BIBLIOTECA DE AULAS',
+      font: FONT, color: C.textLight, bold: true, size: 44,
+    }),
+  ],
+}));
+content.push(new Paragraph({
+  spacing: { before: 0, after: 80 },
+  children: [new TextRun({
+    text: 'Conteúdo de Formação 100% Mobile',
+    font: FONT, color: C.accent, bold: true, size: 28,
+  })],
+}));
+content.push(Sub('Aulas práticas em vídeo para estruturar a presença digital de qualquer ONG ou projeto social. Todas executáveis pelo celular, com passo a passo aplicável imediatamente.'));
+content.push(Empty(180));
+
+// AULA 1 — Instagram (vídeo)
+content.push(videoCard(
+  '01-instagram',
+  'Aula 1 — Como criar conta Dark para Instagram',
+  false,
+  'https://www.youtube.com/watch?v=urbH49Sa11U'
+));
+content.push(Empty(140));
+
+// AULA 2 — Facebook (short)
+content.push(videoCard(
+  '02-facebook',
+  'Aula 2 — Como criar conta Dark para Facebook',
+  true,
+  'https://youtube.com/shorts/z6EAiicttV0'
+));
+content.push(Empty(140));
+
+// AULA 3 — YouTube (vídeo)
+content.push(videoCard(
+  '03-youtube',
+  'Aula 3 — Como criar conta Dark para YouTube',
+  false,
+  'https://www.youtube.com/watch?v=uhn29kt8kCI'
+));
+content.push(Empty(140));
+
+// AULA 4 — LinkedIn (short)
+content.push(videoCard(
+  '04-linkedin',
+  'Aula 4 — Como criar conta Dark para LinkedIn',
+  true,
+  'https://youtube.com/shorts/421gy5M3AyI'
+));
+content.push(Empty(140));
+
+// AULA 5 — LinkTree (short)
+content.push(videoCard(
+  '05-linktree',
+  'Aula 5 — Como criar conta Dark para LinkTree',
+  true,
+  'https://youtube.com/shorts/dCHIWjtkjw0'
+));
+content.push(Empty(140));
+
+// AULA 6 — IA conteúdo (short)
+content.push(videoCard(
+  '06-ia-conteudo',
+  'Aula 6 — Como criar conteúdo gratuitamente com IA',
+  true,
+  'https://youtube.com/shorts/vma7xNCbLs0'
+));
+content.push(Empty(140));
+
+// AULA 7 — IA postagem (short)
+content.push(videoCard(
+  '07-ia-postagem',
+  'Aula 7 — Estratégia de postagem com IA',
+  true,
+  'https://youtube.com/shorts/lVqbhjEG3uk'
+));
+content.push(Empty(140));
+
+// AULA 8 — IA compartilhamento (short)
+content.push(videoCard(
+  '08-ia-compartilhamento',
+  'Aula 8 — Estratégia de compartilhamento com IA',
+  true,
+  'https://youtube.com/shorts/cC2qcB1Vnrs'
+));
+
+content.push(Empty(200));
+content.push(new Paragraph({
+  alignment: AlignmentType.CENTER,
+  spacing: { before: 100, after: 80 },
+  children: [
+    new TextRun({ text: '💜  ', font: FONT, size: 24 }),
+    new TextRun({
+      text: 'Novas aulas são adicionadas continuamente. Acompanhe nosso canal.',
+      font: FONT, color: C.accentSoft, italics: true, bold: true, size: 22,
+    }),
+  ],
+}));
 
 content.push(Empty(240));
 content.push(Divider());
